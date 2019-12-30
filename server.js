@@ -11,7 +11,7 @@ const database = {
         name: "John",
         email: "john@gmail.com",
         password: "password_1234",
-        entires: 0,
+        entries: 0,
         joined: new Date()
     },
     {
@@ -19,7 +19,7 @@ const database = {
         name: "Sally",
         email: "sally@gmail.com",
         password: "bannanas",
-        entires: 0,
+        entries: 0,
         joined: new Date()
     }]
 }
@@ -44,7 +44,7 @@ app.post('/register', (req, res) => {
             name: name,
             email: email,
             password: password,
-            entires: 0,
+            entries: 0,
             joined: new Date()
         }
     )
@@ -65,15 +65,23 @@ app.get('/profile/:id', (req, res) => {
     }
 })
 
+app.post('/image', (req, res) => {
+    const { id } = req.body;
+    let found = false;
+    database.users.forEach(user => {
+        if (user.id === id) {
+            found = true;
+            user.entries++;
+            return res.json(user.entries);
+        }
+    })
+    if (!found) {
+        res.status(400).json('not found');
+    }
+})
+
 app.listen(3000, () => {
     console.log('App is running on port 3000')
 })
 
-/*
-/ --> res = this is working
-/signin --> POST = success/fail
-/register --> POST = user
-/profile/:uswerId --> GET = user
-/image --> PUT = user
-*/
 
