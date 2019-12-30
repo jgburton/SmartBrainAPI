@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 
 const database = {
     users: [{
-        id: 123,
+        id: '123',
         name: "John",
         email: "john@gmail.com",
         password: "password_1234",
@@ -15,7 +15,7 @@ const database = {
         joined: new Date()
     },
     {
-        id: 124,
+        id: '124',
         name: "Sally",
         email: "sally@gmail.com",
         password: "bannanas",
@@ -51,6 +51,20 @@ app.post('/register', (req, res) => {
     res.json(database.users[database.users.length - 1]);
 })
 
+app.get('/profile/:id', (req, res) => {
+    const { id } = req.params;
+    let found = false;
+    database.users.forEach(user => {
+        if (user.id === id) {
+            found = true;
+            return res.json(user);
+        }
+    })
+    if (!found) {
+        res.status(400).json('no such user');
+    }
+})
+
 app.listen(3000, () => {
     console.log('App is running on port 3000')
 })
@@ -62,3 +76,4 @@ app.listen(3000, () => {
 /profile/:uswerId --> GET = user
 /image --> PUT = user
 */
+
