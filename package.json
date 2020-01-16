@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "author": "Jamie Grantham-Burton",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express.js": "^1.0.0"
   },
   "devDependencies": {
