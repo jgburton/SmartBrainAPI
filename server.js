@@ -24,34 +24,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const database = {
-    users: [{
-        id: '123',
-        name: "John",
-        email: "john@gmail.com",
-        password: "password",
-        entries: 0,
-        joined: new Date()
-    },
-    {
-        id: '124',
-        name: "Sally",
-        email: "sally@gmail.com",
-        password: "bannanas",
-        entries: 0,
-        joined: new Date()
-    }],
-    login: [
-        {
-            id: '987',
-            hash: '',
-            email: 'john@gmail.com'
-        }
-    ]
-}
+
 
 app.get('/', (req, res) => {
-    res.send(database.users);
+    res.send(db.users);
 })
 
 app.post('/signin', (req, res) => {
@@ -64,9 +40,9 @@ app.post('/signin', (req, res) => {
                     .where('email', '=', req.body.email)
                     .then(user => {
                         res.json(user[0]);
-                })
-                .catch(err => res.status(400).json('User not found'))
-            } else  {
+                    })
+                    .catch(err => res.status(400).json('User not found'))
+            } else {
                 res.status(400).json('wrong crednetials')
             }
         })
@@ -132,23 +108,9 @@ app.put('/image', (req, res) => {
 })
 // ****************************************
 
-
-// bcrypt.hash("bacon", null, null, function (err, hash) {
-//     // Store hash in your password DB.
-// });
-
-// // Load hash from your password DB.
-// bcrypt.compare("bacon", hash, function(err, res) {
-//     // res == true
-// });
-// bcrypt.compare("veggies", hash, function(err, res) {
-//     // res = false
-// });
-
 app.listen(3000, () => {
     console.log('App is running on port 3000')
 })
 
 
-// 5.38 mins
 
