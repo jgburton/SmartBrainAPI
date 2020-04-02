@@ -3,7 +3,7 @@ Smart Brain is a web app that uses the Clarifai API to locate a face in a pictur
 
 <a href="https://smart-brain-3-2020.herokuapp.com/ ">Check it out on Heroku</a>
 
-![Image of Smart-Brain](https://github.com/jgburton/SmartBrain/master/screenshot.png)
+![Image of Smart-Brain](https://github.com/jgburton/SmartBrain/blob/master/images/screenshot.png)
 
 ## Technologies Used
 ### Front-End
